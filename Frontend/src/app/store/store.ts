@@ -4,16 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { catalogApi } from "../../features/catalog/catalogApi";
 import { uiSlice } from "../layouts/uiSlice";
 import { errorApi } from "../../features/about/errorApi";
+import { cartApi } from "../../features/cart/cartApi";
 
 export const store = configureStore({
   reducer: {
     [catalogApi.reducerPath]: catalogApi.reducer,
+    [cartApi.reducerPath]: cartApi.reducer,
     [errorApi.reducerPath]: errorApi.reducer,
     counter: counterSlice.reducer,
     ui: uiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(catalogApi.middleware, errorApi.middleware),
+    getDefaultMiddleware().concat(catalogApi.middleware, cartApi.middleware, errorApi.middleware),
 });
 
 // Typescript code for defining a type or assigning a type to a variable, function, array, object or hook.
